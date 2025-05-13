@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 </head>
 <body>
+    {% if user.is_authenticated %}
 
     <header>
         <div class="user-info">
             <p>{{ user.first_name }} {{ user.last_name }}</p>
+            <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Выйти</button>
+            </form>
         </div>
     </header>
 
@@ -67,6 +72,11 @@
 
         </div>
     </main>
+     {% else %}
+            <p class="note">Пожалуйста, войдите в систему.</p>
+            <a href="{% url 'register-url' %}" class="action-btn">Регистрация</a>
+            <a href="{% url 'login-url' %}" class="action-btn">Войти в аккаунт</a>
+    {% endif %}
 
     <script src="{% static 'js/dashboard.js' %}"></script>
 </body>

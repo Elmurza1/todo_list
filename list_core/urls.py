@@ -16,17 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import RegisterList, MakeRegisterView, LoginPageView, MakeLoginView
+from users.views import RegisterList, MakeRegisterView, LoginPageView, MakeLoginView, MakeLogoutView
 from dashboard.views import DashboardView, AddTasksView, DeletedTaskView,DoneTaskView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register-page/', RegisterList.as_view(), name="register-url"),
     path('make-register/', MakeRegisterView.as_view(), name="make-register-url"),
-    path('dashboard-page/', DashboardView.as_view(), name="dashboard-url"),
+    path('', DashboardView.as_view(), name="dashboard-url"),
     path('add-task/', AddTasksView.as_view(), name="add-task-url" ),
     path('deleted-task/<int:pk>/', DeletedTaskView.as_view(), name="deleted-task-url"),
     path('done-task/<int:pk>/', DoneTaskView.as_view(), name="done-task-url"),
     path('login-page/', LoginPageView.as_view(), name="login-url"),
-    path('make-login/', MakeLoginView.as_view(), name="make-login-url")
+    path('make-login/', MakeLoginView.as_view(), name="make-login-url"),
+    path('make-logout/', MakeLogoutView.as_view(), name="logout")
 ]

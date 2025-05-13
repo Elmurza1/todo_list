@@ -13,14 +13,20 @@
 
     <form method="POST" action="{% url 'make-login-url' %}">
         {% csrf_token %}
-        <input type="email" name="email" placeholder="Имя пользователя" required>
+        <input type="email" name="email" placeholder="ваш email" required>
         <input type="password" name="password" placeholder="Пароль" required>
 
         <button type="submit">Войти</button>
     </form>
-
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <p class="signup-link">
-        Нет аккаунта? <a href="/register/">Зарегистрируйтесь</a>
+        Нет аккаунта? <a href="{% url 'register-url' %}">Зарегистрируйтесь</a>
     </p>
 </div>
 

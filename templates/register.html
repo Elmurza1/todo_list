@@ -23,9 +23,16 @@
                 <input type="password" name="password2" placeholder="Повтори пароль" required>
                 <button type="submit">Зарегистрироваться</button>
             </form>
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
 
             <p class="login-link">
-                Уже есть аккаунт? <a href="/login/">Войти</a>
+                Уже есть аккаунт? <a href="{% url 'login-url' %}">Войти</a>
             </p>
         </div>
     </div>
