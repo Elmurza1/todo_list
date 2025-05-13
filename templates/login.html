@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в аккаунт</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Вход</h2>
+
+    <form method="POST" action="{% url 'make-login-url' %}">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Имя пользователя" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+
+        <button type="submit">Войти</button>
+    </form>
+
+    <p class="signup-link">
+        Нет аккаунта? <a href="/register/">Зарегистрируйтесь</a>
+    </p>
+</div>
+
+</body>
+</html>

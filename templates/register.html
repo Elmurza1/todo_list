@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+
+            <h2>Регистрация</h2>
+
+            <!-- ВСТАВИШЬ СЮДА СВОЮ JINJA ФОРМУ -->
+            <form action="{% url 'make-register-url' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="first_name" placeholder="first_name" required>
+                <input type="text" name="last_name" placeholder="last_name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password1" placeholder="Пароль" required>
+                <input type="password" name="password2" placeholder="Повтори пароль" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+
+            <p class="login-link">
+                Уже есть аккаунт? <a href="/login/">Войти</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+</body>
+</html>

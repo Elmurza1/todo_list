@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль | Задачи</title>
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="user-info">
+            <p>{{ user.first_name }} {{ user.last_name }}</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="task-container">
+            <h2>Мои задачи</h2>
+
+            <!-- Форма создания новой задачи -->
+            <form action="{% url 'add-task-url' %}" method="POST" class="new-task-form">
+                {% csrf_token %}
+
+                <input type="text" name="tasks" placeholder="Новая задача..." required>
+                <button type="submit">Добавить</button>
+            </form>
+
+            <ul class="task-list">
+                {% for item in task %}
+                <li class="task-item">
+
+                        <span class="task-title">{{item.text}}</span>
+
+                    <div class="task-actions">
+                        <form action="{% url 'done-task-url' item.id %}" method="POST" class="action-form">
+                            {% csrf_token %}
+
+                            <button class="done-btn">✓</button>
+                        </form>
+                        <form action="{% url 'deleted-task-url' item.id %}" method="POST" class="action-form">
+                            {% csrf_token %}
+
+                            <button class="delete-btn">✕</button>
+                        </form>
+                    </div>
+                </li>
+                 {%endfor%}
+                <!-- повторяй -->
+            </ul>
+
+            <hr>
+            <h3 class="done-title">Выполненные задачи</h3>
+            <ul class="done-task-list">
+                {% for item in done_task %}
+                <li class="task-item done">
+                    <span class="task-title">{{ item.text }}</span>
+                    <div class="task-actions">
+                        <form action="{% url 'deleted-task-url' item.id %}" method="POST" class="action-form">
+                            {% csrf_token %}
+                            <button class="delete-btn">✕</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </main>
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>
