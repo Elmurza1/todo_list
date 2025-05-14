@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+}
+
+header {
+    background: #343a40;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-info p {
+    margin: 0;
+    font-weight: 500;
+}
+
+main {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.new-task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.new-task-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.new-task-form button {
+    padding: 10px 15px;
+    background: #28a745;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.new-task-form button:hover {
+    background: #218838;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.task-title {
+    flex: 1;
+}
+
+/* ✅ Выполненные задачи — зачёркнуты, серые, полупрозрачные */
+.task-item.done .task-title {
+    text-decoration: line-through;
+    color: #6c757d;
+    opacity: 0.8;
+}
+
+/* ✅ Фон для блока с выполненными задачами */
+.done-task-list .task-item {
+    background: #e6e6e6;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-form button {
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.done-btn {
+    color: #28a745;
+}
+
+.done-btn:hover {
+    color: #1e7e34;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.delete-btn:hover {
+    color: #bd2130;
+}
+.logout-form {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
