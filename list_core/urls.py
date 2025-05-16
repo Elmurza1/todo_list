@@ -14,10 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from tkinter.font import names
+
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from users.views import RegisterList, MakeRegisterView, LoginPageView, MakeLoginView, MakeLogoutView
-from dashboard.views import DashboardView, AddTasksView, DeletedTaskView,DoneTaskView
+from dashboard.views import DashboardView, AddTasksView, DeletedTaskView, DoneTaskView, UploadAvatarPicture
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +33,6 @@ urlpatterns = [
     path('done-task/<int:pk>/', DoneTaskView.as_view(), name="done-task-url"),
     path('login-page/', LoginPageView.as_view(), name="login-url"),
     path('make-login/', MakeLoginView.as_view(), name="make-login-url"),
-    path('make-logout/', MakeLogoutView.as_view(), name="logout")
-]
+    path('make-logout/', MakeLogoutView.as_view(), name="logout"),
+    path('upload-avatar/', UploadAvatarPicture.as_view(), name="upload-avatar-url")
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

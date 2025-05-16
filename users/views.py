@@ -4,7 +4,8 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.contrib import messages
 from users.models import CustomUser
-
+from django.core.mail import send_mail
+from django.conf import settings
 
 class RegisterList(TemplateView):
     """ вью для показа страницы регистрации """
@@ -35,7 +36,11 @@ class MakeRegisterView(View):
             password=password1
         )
         login(request, user)
+
+        send_email(email)
+
         return redirect("dashboard-url")
+
 
 
 class LoginPageView(TemplateView):
@@ -70,4 +75,16 @@ class MakeLogoutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
         return render(request, 'login.html', {})
+
+
+
+def send_email(to_email):
+    """Отправка письма после регистрации"""
+    subject = 'Добро пожаловать'
+    message = 'Вы успешно зарегистрировались на нашем сайте. Теперь задачи под моим контролем и все они не выполнятся наверное'
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [to_email]
+
+    send_mail(subject, message, from_email, recipient_list)
+
 
