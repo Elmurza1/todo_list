@@ -3,8 +3,10 @@ from django.views import View
 from django.views.generic import TemplateView
 from dashboard.models import Task
 
+
+
 class DashboardView(TemplateView):
-    """ Вьюшка для туду-листа """
+    """ Вью для туду-листа """
     template_name = "dashboard.html"
 
     def dispatch(self, request, *args, **kwargs):
@@ -23,7 +25,7 @@ class DashboardView(TemplateView):
 
 
 class AddTasksView(View):
-    """ вьюшка для добавления новых задач """
+    """ Вью для добавления новых задач """
     def post(self, request):
         if not request.user.is_authenticated:
             return redirect('login-url')
@@ -34,7 +36,7 @@ class AddTasksView(View):
 
 
 class DeletedTaskView(View):
-    """ вьюшка для того что бы удалить задачи """
+    """ Вью для того что бы удалить задачи """
     def post(self, request, pk):
         if not request.user.is_authenticated:
             return redirect('login-url')
@@ -45,7 +47,7 @@ class DeletedTaskView(View):
 
 
 class DoneTaskView(View):
-    """ вьюшка для того что бы пометить задачи помеченными """
+    """ Вью для того что бы пометить задачи помеченными """
     def post(self, request, pk):
         if not request.user.is_authenticated:
             return redirect('login-url')
@@ -56,7 +58,7 @@ class DoneTaskView(View):
         return redirect("dashboard-url")
 
 class UploadAvatarPicture(View):
-    """ вьюшка для того что бы добавить фото профиля  """
+    """ Вью для того что бы добавить фото профиля  """
     def post(self, request):
 
         image = request.FILES.get('image')

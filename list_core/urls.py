@@ -6,6 +6,7 @@ from django.urls import path
 from users.views import RegisterList, MakeRegisterView, LoginPageView, MakeLoginView, MakeLogoutView
 from dashboard.views import DashboardView, AddTasksView, DeletedTaskView, DoneTaskView, UploadAvatarPicture
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register-page/', RegisterList.as_view(), name="register-url"), # эндпоинт для страницы регистрации
