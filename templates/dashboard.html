@@ -11,6 +11,28 @@
 
     <header>
         <div class="user-info">
+            {% if user.avatar_image %}
+                <img src="{{ user.avatar_image.url }}" alt="Фото профиля" width="60" height="60" style="border-radius: 50%;">
+            {% else %}
+                <img src="{% static 'img/default-avatar.png' %}" alt="Нет фото" width="60" height="60" style="border-radius: 50%;">
+            {% endif %}
+
+            <p>{{ user.first_name }} {{ user.last_name }}</p>
+
+            <!-- Форма загрузки фото -->
+            <form action="{% url 'upload-avatar-url' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="image" accept="image/*" required>
+                <button type="submit">Загрузить фото</button>
+            </form>
+
+            <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Выйти</button>
+            </form>
+        </div>
+
+        <div class="user-info">
             <p>{{ user.first_name }} {{ user.last_name }}</p>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
