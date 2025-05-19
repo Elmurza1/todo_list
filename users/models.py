@@ -11,6 +11,8 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    avatar_image = models.ImageField(null=True, blank=True)
+
     objects = CustomUserManager()
 
     def __str__(self):
