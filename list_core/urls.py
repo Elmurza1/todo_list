@@ -1,21 +1,4 @@
-"""
-URL configuration for list_core project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from tkinter.font import names
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -25,14 +8,16 @@ from dashboard.views import DashboardView, AddTasksView, DeletedTaskView, DoneTa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register-page/', RegisterList.as_view(), name="register-url"),
+    path('register-page/', RegisterList.as_view(), name="register-url"), # эндпоинт для страницы регистрации
     path('make-register/', MakeRegisterView.as_view(), name="make-register-url"),
-    path('', DashboardView.as_view(), name="dashboard-url"),
-    path('add-task/', AddTasksView.as_view(), name="add-task-url" ),
-    path('deleted-task/<int:pk>/', DeletedTaskView.as_view(), name="deleted-task-url"),
-    path('done-task/<int:pk>/', DoneTaskView.as_view(), name="done-task-url"),
-    path('login-page/', LoginPageView.as_view(), name="login-url"),
+
+    path('', DashboardView.as_view(), name="dashboard-url"), # эндпоинт для главной страницы, где задачи
+    path('add-task/', AddTasksView.as_view(), name="add-task-url" ), # эндпоинт для, добавление задачи
+    path('deleted-task/<int:pk>/', DeletedTaskView.as_view(), name="deleted-task-url"), # эндпоинт для, удаление задачи
+    path('done-task/<int:pk>/', DoneTaskView.as_view(), name="done-task-url"), # эндпоинт для, того что бы отметить задание сделанным
+
+    path('login-page/', LoginPageView.as_view(), name="login-url"), # эндпоинт для страницы логина
     path('make-login/', MakeLoginView.as_view(), name="make-login-url"),
-    path('make-logout/', MakeLogoutView.as_view(), name="logout"),
-    path('upload-avatar/', UploadAvatarPicture.as_view(), name="upload-avatar-url")
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    path('make-logout/', MakeLogoutView.as_view(), name="logout") # эндпоинт для выхода их аккаунта
+]

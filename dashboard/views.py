@@ -54,13 +54,3 @@ class DoneTaskView(View):
         task.is_done = True
         task.save()
         return redirect("dashboard-url")
-
-class UploadAvatarPicture(View):
-    """ вьюшка для того что бы добавить фото профиля  """
-    def post(self, request):
-
-        image = request.FILES.get('image')
-        if image:
-            request.user.avatar_image = image
-            request.user.save()
-        return redirect("dashboard-url")
