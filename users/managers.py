@@ -1,7 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
-    """ кастомный менеджер для модели пользователя  """
+    """ Кастомный менеджер для модели пользователя  """
     def create_user(self, email, password, **extra_fields):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)

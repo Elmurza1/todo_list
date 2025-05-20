@@ -8,12 +8,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 class RegisterList(TemplateView):
-    """ вью для показа страницы регистрации """
+    """ Вью для показа страницы регистрации """
     template_name = 'register.html'
 
 
 class MakeRegisterView(View):
-    """ вьюшка для регистрации пользователя  """
+    """ Вью для регистрации пользователя  """
 
     def post(self, request, *args, **kwargs):
         data = request.POST
@@ -44,12 +44,12 @@ class MakeRegisterView(View):
 
 
 class LoginPageView(TemplateView):
-    """ вьюшка для страницы логина  """
+    """ Вью для страницы логина  """
     template_name = "login.html"
 
 
 class MakeLoginView(View):
-    """ вьшка для того что бы зарегистрировать пользователя  """
+    """ Вью для того что бы зарегистрировать пользователя  """
 
     def post(self, request, *args, **kwargs):
         data = request.POST
@@ -71,7 +71,7 @@ class MakeLoginView(View):
 
 
 class MakeLogoutView(View):
-    """Вьюшка для выхода из аккаунта"""
+    """Вью для выхода из аккаунта"""
     def post(self, request, *args, **kwargs):
         logout(request)
         return render(request, 'login.html', {})
@@ -86,5 +86,3 @@ def send_email(to_email):
     recipient_list = [to_email]
 
     send_mail(subject, message, from_email, recipient_list)
-
-
